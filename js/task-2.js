@@ -22,5 +22,28 @@ const images = [
   {
     url: "https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg",
     alt: "Lighthouse Coast Sea",
-  }
+  },
 ];
+
+// Отримуємо посилання на ul.gallery
+const gallery = document.querySelector('.gallery');
+
+// Створюємо HTML рядок для всіх зображень
+const galleryItems = images.map(({ url, alt }) => 
+  `<li><img src="${url}" alt="${alt}"></li>`
+).join('');
+
+// Додаємо всі елементи в DOM за одну операцію
+gallery.insertAdjacentHTML('beforeend', galleryItems);
+
+// Додаємо мінімальне оформлення галереї флексбоксами через CSS класи
+gallery.style.display = 'flex';
+gallery.style.flexWrap = 'wrap';
+gallery.style.gap = '10px';
+gallery.querySelectorAll('li').forEach(li => {
+  li.style.listStyle = 'none';
+});
+gallery.querySelectorAll('img').forEach(img => {
+  img.style.maxWidth = '100%';
+  img.style.height = 'auto';
+});
